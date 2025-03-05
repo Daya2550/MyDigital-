@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Save Product</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .form-container {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        label {
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: block;
+            color: #555;
+        }
+
+        input, textarea, button {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        input:focus, textarea:focus {
+            border-color: #007bff;
+            outline: none;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        button {
+            background: #007bff;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            font-size: 18px;
+        }
+
+        button:hover {
+            background: #0056b3;
+        }
+    </style>
+</head>
+<body onload="loadValue()">
+
+    <div class="form-container">
+        <h2>Save Product</h2>
+        <form action="/Farmer/products/save" method="post">
+            
+            <label for="farmerId">Farmer ID:</label>
+            <input type="text" id="farmerId" name="farmerId" placeholder="Farmer ID" readonly />
+
+            <label for="productname">Product Name:</label>
+            <input type="text" id="productname" name="productname" placeholder="Product Name" required />
+
+            <label for="charges">Charges:</label>
+            <input type="number" id="charges" name="charges" step="0.01" placeholder="Charges" required />
+
+            <label for="finalPrice">Final Price:</label>
+            <input type="number" id="finalPrice" name="finalPrice" step="0.01" placeholder="Final Price" required />
+
+            <label for="weight">Weight:</label>
+            <input type="number" id="weight" name="weight" step="0.01" placeholder="Weight" required />
+
+            <label for="variety">Variety:</label>
+            <input type="text" id="variety" name="variety" placeholder="Variety" required />
+
+            <label for="quantity">Quantity:</label>
+            <input type="number" id="quantity" name="quantity" placeholder="Quantity" required />
+
+            <label for="farmerName">Farmer Name:</label>
+            <input type="text" id="farmerName" name="farmerName" placeholder="Farmer Name" required />
+
+            <label for="date">Date:</label>
+            <input type="date" id="date" name="date" required />
+
+            <label for="remark">Remark:</label>
+            <textarea id="remark" name="remark" placeholder="Remark"></textarea>
+
+            <button type="submit">Save Product</button>
+
+        </form>
+    </div>
+
+    <script>
+        function loadValue() {
+            let farmerId = localStorage.getItem("farmerId");
+            if (farmerId) {
+                document.getElementById("farmerId").value = farmerId;
+            }
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Scraped Data</title>
+</head>
+<body>
+    <h1>Scraped Table Data</h1>
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>District Name</th>
+                <th>Commodity</th>
+                <th>Variety</th>
+                <th>Min. Price</th>
+                <th>Max. Price</th>
+                <th>Modal Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="item : ${data}">
+                <td th:text="${item.name}"></td>
+                <td th:text="${item.commodity}"></td>
+                <td th:text="${item.variety}"></td>
+                <td th:text="${item.minPrice}"></td>
+                <td th:text="${item.maxPrice}"></td>
+                <td th:text="${item.modalPrice}"></td>
+            </tr>
+        </tbody>
+    </table>
+
+</body>
+</html>

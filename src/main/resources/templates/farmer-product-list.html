@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Farmer Products</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+        }
+
+        h1, h2 {
+            color: #2c3e50;
+        }
+
+        table {
+            width: 90%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            background: #ffffff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        th, td {
+            padding: 12px;
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+
+        th {
+            background-color: #3498db;
+            color: white;
+            font-size: 16px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        tr:hover {
+            background-color: #d1ecf1;
+        }
+
+        .btn {
+            display: inline-block;
+            margin: 20px auto;
+            padding: 12px 20px;
+            background-color: #28a745;
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome <span th:text="${farmerName}"></span>!</h1>
+    <h2>Your Products</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>  
+                <th>Product Name</th>
+                <th>Charges</th>
+                <th>Final Price</th>
+                <th>Weight</th>
+                <th>Variety</th>
+                <th>Quantity</th>
+                <th>Bid Status</th>
+                <th>Total Pay</th>
+                <th>Base Price</th>
+                <th>Farmer Name</th>
+                <th>Date</th>
+                <th>Remark</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="product : ${products}">
+                <td th:text="${product.id}"></td> 
+                <td th:text="${product.productname}"></td>
+                <td th:text="${product.charges}"></td>
+                <td th:text="${product.finalPrice}"></td>
+                <td th:text="${product.weight}"></td>
+                <td th:text="${product.variety}"></td>
+                <td th:text="${product.quantity}"></td>
+                <td th:text="${product.bidstatus}"></td>
+                <td th:text="${product.Totalpay}"></td>
+                <td th:text="${product.basePrice}"></td>
+                <td th:text="${product.farmerName}"></td>
+                <td th:text="${product.date}"></td>
+                <td th:text="${product.remark}"></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="/Farmer/products/new" class="btn">Add New Product</a>
+</body>
+</html>

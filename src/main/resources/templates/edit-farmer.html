@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Farmer Profile</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            width: 350px;
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+        label {
+            font-weight: bold;
+            display: block;
+            margin-top: 10px;
+        }
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+        button:hover {
+            background: #218838;
+        }
+        .cancel-link {
+            display: block;
+            text-align: center;
+            margin-top: 10px;
+            color: #007bff;
+            text-decoration: none;
+        }
+        .cancel-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Edit Profile</h2>
+        <form th:action="@{/Farmer/self/update/{id}(id=${farmer.id})}" method="post">
+            <label>Name:</label>
+            <input type="text" name="MName" th:value="${farmer.MName}" required>
+
+            <label>Password change:</label>
+            <input type="password" name="password" th:value="${farmer.password}" required>
+
+            <label>Email:</label>
+            <input type="email" name="MEmail" th:value="${farmer.MEmail}" required>
+
+            <label>Phone:</label>
+            <input type="text" name="phoneNO" th:value="${farmer.phoneNO}" required>
+
+            <label>Address:</label>
+            <input type="text" name="address" th:value="${farmer.address}" required>
+
+            <label>Account No:</label>
+            <input type="text" name="BankAccountNO" th:value="${farmer.BankAccountNO}" required>
+
+            <label>Document update:</label>
+            <input type="text" name="document" th:value="${farmer.document}" required>
+
+            <button type="submit">Update</button>
+            <a href="/Farmer/FarmerHome" class="cancel-link">Cancel</a>
+        </form>
+    </div>
+</body>
+</html>

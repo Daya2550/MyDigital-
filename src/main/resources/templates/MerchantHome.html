@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Merchant Home</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .container {
+            margin-top: 50px;
+        }
+        .card {
+            padding: 20px;
+            border-radius: 10px;
+            background: #ffffff;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .navbar {
+            padding: 15px;
+        }
+        .table {
+            background-color: #ffffff;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .btn {
+            border-radius: 5px;
+        }
+        .footer {
+            background: #343a40;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Merchant Dashboard</a>
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/products/new">Add Product</a></li>
+                </ul>
+            </div>
+            <button class="btn btn-danger" onclick="window.location.href='/logout'">Logout</button>
+        </div>
+    </nav>
+    
+    <header class="container text-center my-4">
+        <h1 class="text-primary">Good Morning, <span th:text="${merchantName}"></span>!</h1>
+    </header>
+    
+    <div class="container">
+        <div class="card shadow">
+            <p><strong>Email:</strong> <span th:text="${merchantEmail}"></span></p>
+            <p><strong>Payment:</strong> <span th:text="${payment}"></span></p>
+            <p><strong>Total:</strong> <span th:text="${Total}"></span></p>
+            <a th:href="@{/Merchant/self/edit/{id}(id=${merchantId})}" class="btn btn-warning">Update Profile</a>
+        </div>
+    </div>
+
+    <div class="container mt-4">
+        <div class="card shadow p-3">
+            <h2 class="text-center">Products for Merchant</h2>
+            <table class="table table-striped table-hover">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Product Name</th>
+                        <th>Charges</th>
+                        <th>Final Price</th>
+                        <th>Weight</th>
+                        <th>Variety</th>
+                        <th>Quantity</th>
+                        <th>Farmer Name</th>
+                        <th>Date</th>
+                        <th>Remark</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="product : ${products}">
+                        <td th:text="${product.productname}"></td>
+                        <td th:text="${product.charges}"></td>
+                        <td th:text="${product.finalPrice}"></td>
+                        <td th:text="${product.weight}"></td>
+                        <td th:text="${product.variety}"></td>
+                        <td th:text="${product.quantity}"></td>
+                        <td th:text="${product.farmerName}"></td>
+                        <td th:text="${product.date}"></td>
+                        <td th:text="${product.remark}"></td>
+                        <td>
+                            <a th:href="@{/Merchant/products/edit/{id}(id=${product.id})}" class="btn btn-sm btn-primary">Edit</a>
+                            <form th:action="@{/Merchant/products/delete/{id}(id=${product.id})}" method="post" style="display:inline;">
+                                <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?')">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <a href="/Merchant/products/new" class="btn btn-success">Add New Product</a>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2025 Merchant Dashboard. All rights reserved.</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farmers List</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
+        .actions {
+            display: flex;
+            gap: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Farmers List</h2>
+    
+    <!-- Button to navigate to add a new farmer -->
+    <a href="/Farmer/admin/register"><button>Add New Farmer</button></a>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Password</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Address</th>
+                <th>Account No</th>
+                <th>Document</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Iterate over the list of farmers -->
+            <tr th:each="farmer : ${farmers}">
+                <td th:text="${farmer.id}"></td>
+                <td th:text="${farmer.MName}"></td>
+                <td th:text="${farmer.password}"></td>
+                <td th:text="${farmer.MEmail}"></td>
+                <td th:text="${farmer.phoneNO}"></td>
+                <td th:text="${farmer.address}"></td>
+                <td th:text="${farmer.BankAccountNO}"></td>
+                <td th:text="${farmer.document}"></td>
+                <td class="actions">
+                    <!-- Edit Button -->
+                    <a th:href="@{/Farmer/admin/edit/{id}(id=${farmer.id})}"><button>Edit</button></a>
+
+                    <!-- Delete Button -->
+                    <form th:action="@{/Farmer/delete/{id}(id=${farmer.id})}" method="post" onsubmit="return confirm('Are you sure you want to delete this farmer?');">
+                        <button type="submit">Delete</button>
+                    </form>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>
